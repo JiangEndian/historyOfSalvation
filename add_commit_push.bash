@@ -4,9 +4,9 @@ INFO=$(date +%Y%m%d)
 
 #git status
 #echo;echo
-git add *  * && echo add_succese
+git add *
 git commit -m $INFO && echo commit_succese
-git push -u origin master && echo git_push_succese.
+git push
 echo;echo
 git status
 
