@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript">
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      } 
+    }
+    function back2top(event){
+        event = event
+        event.stopPropagation()
+        scroll(0,0);
+    //    setTimeout(function(){ scroll(0, 0);},100)
+    }
+</script>
+
+<audio autoplay="autoplay" src="/static/grace_voice/{{ ext }}" loop="loop" controls/>
+Your browser does not support the audio element.
+</audio>
+<hr>
+
+<font size="7">
+{% ifequal every_info 'common' %}
+    <pre style="white-space: pre-wrap; word-wrap:break-word;">
+        {{ con }}
+    </pre>
+    <hr>
+    <div id="lb" style="color:gray">
+    {{ env }}
+    </div>
+{% else %}
+    <pre style="white-space: pre-wrap; word-wrap:break-word;">
+        {{ con }}
+    </pre>
+    <hr>
+    <div id="lb" >
+    {{ env }}
+    </div>
+{% endifequal %}
+<hr>
+</font>
+
+<u><h1>{{ every_info }}</h1></u>
+<hr>
+
+<form action="/accept-cmd-alt4" method="get">
+    <input type="hidden" name="every" value={{ every_info }}>
+    {% ifequal every_info 'common' %}
+        {% include "input_cmd_default0.html" %}
+    {% endifequal %}
+    
+    {% ifequal every_info 'week' %}
+        {% include "input_cmd_default2.html" %}
+    {% endifequal %}
+
+    {% ifequal every_info 'month' %}
+        {% include "input_cmd_default2.html" %}
+    {% endifequal %}
+
+    {% ifequal every_info 'year' %}
+        {% include "input_cmd_default8.html" %}
+    {% endifequal %}
+</form>
+<button onclick='back2top(event)' style="width:680px;height:60px"> back2top </button>
+
+<p>{{ every }} {{ cmd }}</p>
+{{ showinfo }} <a href=/alt1234> 回到主页 </a>
+
+{% endblock %}

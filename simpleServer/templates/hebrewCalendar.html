@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> אָבִינוּ שֶׁבַּשּׁמַיִם, יִתְקַדֵּשׁ שִׁמְךָ </title>
+
+    <style>
+        .bodyDay {
+          color: #000000;
+          background-color: #ffffff;
+        }
+        .bodyNight {
+          color: #D3D3D3;
+          background-color: #000000;
+        }
+
+        table {
+            width:100%;
+            border: 3px solid green;
+        }
+        td {
+            height:70px;
+            border: 1px solid gray;
+            background-color:white;
+            color:black;
+            text-align:center;
+        }
+        .today{
+            height:70px;
+            border: 1px solid gray;
+            background-color:lightblue;
+            color:red;
+            line-height: 70px; /*加颜色的就不正中了，看看这个效果(可以)*/
+            text-align:center;
+        }
+        .restDay{
+            height:70px;
+            border: 1px solid gray;
+            background-color:lightgreen;
+            color:black;
+            line-height: 70px; /*加颜色的就不正中了，看看这个效果(可以)*/
+            text-align:center;
+        }
+        .monthInfo{
+            height:70px;
+            border: 1px solid gray;
+            background-color:lightgray;
+            color:white;
+            line-height: 70px; /*加颜色的就不正中了，看看这个效果(可以)*/
+            text-align:center;
+        }
+
+        .page {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+        }
+
+        .time_container,
+        .date_container {
+          width: 100%;
+          margin: auto;
+          text-align: center;
+        }
+
+        .rotation{
+            transform:rotate(90deg);
+            -ms-transform:rotate(90deg);
+            -moz-transform:rotate(90deg);
+            -webkit-transform:rotate(90deg);
+            -o-transform:rotate(90deg);
+        }
+
+        .time_container {
+          top: 0;
+          height: 40%;
+        }
+
+        .date_container {
+
+        }
+
+        .time {
+          padding-top: 0px;
+          font-size: 16rem;
+        }
+
+        .date {
+          padding-top: 10px;
+          font-size: 3rem;
+        }
+        .work_container {
+          width: 100%;
+          margin: auto;
+          text-align: center;
+        }
+        .work {
+          padding-top: 10px;
+          font-size: 5rem;
+          text-decoration:underline;
+          /* float:left;*/
+        }
+        .nextWork {
+          padding-top: 0px;
+          font-size: 4rem;
+          font-style:italic;
+          /* float:left;
+          margin-left:20px;*/
+        }
+    </style>
+</head>
+
+<script>
+    //进入全屏
+    function requestFullScreen(element) {
+        var de = document.querySelector(element) || document.documentElement;
+        if (de.requestFullScreen) {
+            de.requestFullScreen();
+        } else if (de.mozRequestFullScreen) {
+            de.mozRequestFullScreen();
+        } else if (de.webkitRequestFullScreen) {
+            de.webkitRequestFullScreen();
+        }
+    }
+    //退出全屏
+    function exitFullScreen(element) {
+        var de = document.querySelector(element) || document.documentElement;
+        if (de.exitFullScreen) {
+            de.exitFullScreen();
+        } else if (de.mozCancelFullScreen) {
+            de.mozCancelFullScreen();
+        } else if (de.webkitCancelFullScreen) {
+            de.webkitCancelFullScreen();
+        }
+    }
+</script>
+
+
+<body class='bodyDay' id='body'>
+    <audio id="bibi" src="/static/bibi.mp3" ></audio>
+
+      <div class="time_container">
+          <div class="time" id="time">11:27</div>
+      </div>
+
+      <div class="date_container">
+          <div class="date" id="date">1月10日</div>
+      </div>
+      
+      <div class='work_container'>
+          <div class="work" id="work">Hebrew Bible</div>
+          <div class="nextWork" id="nextWork">Hebrew Bible</div>
+      </div>
+
+    <script>
+        var lastHour = 0
+        var lastMinute = 0
+        var bibi = document.getElementById("bibi");
+      function update() {
+        var date = new Date()
+        //var utc8DiffMinutes = date.getTimezoneOffset() + 60*9
+        var utc8DiffMinutes = date.getTimezoneOffset() + 60*8
+        date.setMinutes(date.getMinutes() + utc8DiffMinutes)
+
+        var timeString = date.getHours() + ':' + ('0' + date.getMinutes()).slice(-2)
+        var dateString = date.getFullYear() + ('0' + (date.getMonth() + 1)).slice(-2) +  ('0' + date.getDate()).slice(-2)
+        var weekList = ['First', 'Second', 'Third', 'Fourth', 'Fifth', 'Sixth', 'Seventh']
+        var weekString = weekList[date.getDay()] + ' Day'
+        var dateWeekString = dateString + ' ' + weekString
+
+        document.getElementById("time").innerHTML = timeString
+        document.getElementById("date").innerHTML = dateWeekString
+
+        sysHours = date.getHours()
+        sysMinutes = date.getMinutes()
+
+
+        //console.log(sysHours)
+        if (sysHours >= 22){
+            document.getElementById('body').className='bodyNight';
+        }
+        else if (sysHours >= 5){
+            document.getElementById('body').className='bodyDay';
+            
+            //白天的时候有个番茄钟提示休息，但不准在14点15点响，要睡觉
+            if ( sysHours != 14 && sysHours != 15 ){
+            //换小时的时候，didi一声
+            //if (lastHour != sysHours){
+            //每30分钟的时候响一次
+                //if (lastMinute != sysMinutes){
+                if (sysMinutes == 31 || sysMinutes == 1){
+                    //lastHour = sysHours
+                    //lastMinute = sysMinutes
+                    bibi.play()
+                    //console.log('Changed')
+                }
+            }
+        }
+
+        var studyCourse = {0:'SLEEP...', 1:'SLEEP...', 2:'SLEEP...', 
+            3:'SLEEP...', 4:'SLEEP...', 5:'Clearing', 6:'Worship', 
+            7:'Alt4+10', 8:'Breakfast', 
+            9:'Writing', 10:'Writing', 11:'Writing', 
+            12:'Lunch', 13:'REST..', 14:'NAP..', 
+            15:'Preaching', 16:'Editing', 17:'Editing', 18:'Supper', 
+            19:'Talking', 20:'Alt...', 21:'Clearing', 
+            22:'SLEEP...', 23:'SLEEP...'}
+        document.getElementById('work').innerHTML = studyCourse[sysHours].toUpperCase()
+        document.getElementById('nextWork').innerHTML = studyCourse[(sysHours+1)%24].toLowerCase()
+      }
+
+      update()
+      setInterval("update()", 60 * 1000)
+    </script>
+
+<font size="6">
+<table>
+{% for weekNumber, dayContent in weekDayContent.items %}
+    <tr>
+    {% for day, content in dayContent.items %}
+        {% if forloop.first %}
+        <td><div class='monthInfo'>{{ weekNumber }}</div></td>
+        {% endif %}
+        <td title="{{ content.0 }}"> 
+        <!-- 据说这样引起来能显示全长文本？（确实...） -->
+
+            {% ifequal weekNumber todayWeekNumber %}
+                {% ifequal day todayMonthDay %}
+                <div class="today">
+                    {{ day }}
+                </div>
+                {% else %}
+                    {% if forloop.last or content.1 %} <!-- 得这样判断是不是第一个 -->
+                    <div class='restDay'>
+                        {{ day }}
+                    </div>
+                    {% else %}
+                        {{ day }}
+                    {% endif %}
+                {% endifequal %}
+            {% else %}
+                {% if forloop.last or content.1 %} <!-- 得这样判断是不是第一个 -->
+                <div class='restDay'>
+                    {{ day }}
+                </div>
+                {% else %}
+                    {{ day }}
+                {% endif %}
+            {% endifequal %}
+            
+        </td>
+    {% endfor %}
+    </tr>
+{% endfor %}
+</table>
+</font>
+
+
+</body>
+</html>

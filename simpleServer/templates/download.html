@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+
+<form id="uploadFiles" enctype="multipart/form-data" action="/upload_file" method="post">
+       <input type="file" name="myfiles" multiple style="width:900px;height:80px;font-size:40px" onkeydown='if(event.keyCode==13) document.getElementById("uploadFiles").submit(); return false;'/>
+       <input type="submit" value="upload"style="width:900px;height:80px;font-size:40px"/>
+</form>
+<script>
+    //绑定全局按键
+    /*
+    $(document).keypress(function(e) {
+        var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+        if (eCode == 13){  //13为回车
+            //alert('您按了回车键')
+            document.getElementById("uploadFiles").submit();
+        }
+    });
+    //绑定全局不返回还会被别的捕捉，或者先被别的捕捉？直接在回车的按键上绑定提交，然后返回false就可以只提交不再打开文件管理
+    */
+    console.log('runJS');
+    //$("button").on("click", function() {
+    function tfocus() {  //focus itself has some meaning...... 
+                        //And, it has some bugs, cleared my textarea...
+                        //If it can use, do not modify...
+        console.log('runFun');
+        var textarea = $("textarea"), 
+            val = textarea.val();
+
+        textarea
+            .focus()
+            .val("")
+            .val(val);
+        console.log('finishFUN');
+    }
+
+        //});
+
+</script>
+
+<hr>
+<form action="/accept-text" method="post" id="usrform">
+    <input name="cmd" value="submit" type="submit" style="width:900px;height:80px;font-size:40px" >
+    <!-- <input name="text" placeholder="text" value="" style="width:900px;height:100px;font-size:40px" > -->
+</form>
+<textarea name="TextArea" form="usrform" style="width:900px;height:160px;font-size:35px"> {{ TextArea }}</textarea><br>
+<button onclick="tfocus()" style="width:900px;height:80px;font-size:20px">moveCursor2End</button> 
+
+<br>
+<font size="6">
+<table border="1">
+{% for file_name in file_list %}
+    {% if forloop.counter0|divisibleby:2 %}
+    <tr>
+        <td nowrap>
+        <a href="/static/files/{{ file_name }}" target="_blank">  {{ file_name }} </a>
+        </td>
+        <!-- 
+        <td>
+        <a href="/deleteFile?FileName={{ file_name }}"> {{ Delete }} </a>
+        </td>
+        -->
+    {% else %}
+        <td nowrap>
+        <a href="/static/files/{{ file_name }}" target="_blank">  {{ file_name }} </a>
+        </td>
+    </tr>
+    {% endif %}
+{% endfor %}
+</table>
+
+<br>
+<br>
+</font>
+{% endblock %}

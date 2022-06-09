@@ -1,0 +1,102 @@
+
+{% extends "base.html" %}
+{% block content %}
+<script type="text/javascript">
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      }
+   }
+</script>
+
+<form id="form" action="/accept-cmd-alt2" method="get">
+    <input type="hidden" name="every" value={{ every_info }}>
+    {% ifequal every_info 'common' %}
+        {% include "input_cmd_one.html" %}
+    {% endifequal %}
+    
+    {% ifequal every_info 'month' %}
+        {% include "input_cmd_default2.html" %}
+    {% endifequal %}
+
+    {% ifequal every_info 'week' %}
+        {% include "input_cmd_default2.html" %}
+    {% endifequal %}
+
+    {% ifequal every_info 'year' %}
+        {% include "input_cmd_default8.html" %}
+    {% endifequal %}
+</form>
+
+<font size="6">
+{% ifequal every_info 'common' %}
+    <pre style="white-space: pre-wrap; word-wrap:break-word;">
+        {{ con }}
+    </pre>
+    <hr>
+    <div id="lb" style="visibility;">
+    {{ env }}
+    </div>
+    <audio id="myAudio1" autoplay src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio2" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio3" src="/static/grace_voice/{{ ext }}.mp3" />
+    <script>
+        var aud1 = document.getElementById("myAudio1");
+        var aud2 = document.getElementById("myAudio2");
+        var aud3 = document.getElementById("myAudio3");
+        aud1.onended = function() {
+            document.getElementById("form").submit();
+            //aud2.play()
+        }; 
+        aud2.onended = function() {
+            //document.getElementById("form").submit();
+            aud3.play()
+        }; 
+        aud3.onended = function() {
+            document.getElementById("form").submit();
+        }; 
+    </script>
+{% else %}
+    <pre style="white-space: pre-wrap; word-wrap:break-word;">
+        {{ con }}
+    </pre>
+    <hr>
+    <div>
+    {{ env }}
+    </div>
+    <hr>
+    <u>{{ every_info }}</u>
+    <br>
+    <audio id="myAudio1" autoplay src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio2" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio3" src="/static/grace_voice/{{ ext }}.mp3" />
+    <script>
+        {% ifnotequal every_info 'year' %} //年的不自动，否则自动
+        {% endifnotequal %}
+        var aud1 = document.getElementById("myAudio1");
+        var aud2 = document.getElementById("myAudio2");
+        var aud3 = document.getElementById("myAudio3");
+        aud1.onended = function() {
+            aud2.play()
+            //document.getElementById("form").submit();
+        }; 
+        aud2.onended = function() {
+            //aud3.play()
+            document.getElementById("form").submit();
+        }; 
+        aud3.onended = function() {
+            document.getElementById("form").submit();
+        }; 
+    </script>
+{% endifequal %}
+</font>
+
+<p>{{ every }} {{ cmd }}</p>
+<p align="right">
+{{ showinfo }} <a href=/alt1234> 回到主页 </a>
+</p>
+
+{% endblock %}

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- <title> קֹדֶשׁ לַיהוָה </title> -->
+<title> 우리엄마, 공부해라! </title>
+<script src="/static/jquery.js">
+</script>
+</head>
+<body>
+
+우리엄마, 공부해라! <hr>
+<script type="text/javascript">
+    //显示某隐藏标签或隐藏其显示
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      }
+      }
+
+      //获取滚动条位置
+       function get_scroll_position(){
+           return document.documentElement.scrollTop
+       }
+
+       //自动滚动，且对鼠标滚动支持
+       function scroller()  
+       {  
+           if(true)  
+           {   
+               position = get_scroll_position()
+               position += 1;  
+               scroll(0,position);  
+               clearTimeout(timer);  
+               var timer = setTimeout("scroller()",500);  
+           }
+        }
+        //setTimeout("scroller()", 12000);
+
+        function back2top(event){
+            event = event
+            event.stopPropagation()
+            scroll(0,0);
+        //    setTimeout(function(){ scroll(0, 0);},100)
+        }
+        
+        //function simulator_pagedown(){
+        //document.onclick = function (){
+        function page_down(){
+            position = get_scroll_position()
+            position += 200;
+            scroll(0, position)
+        }
+        //setTimeout("scroll(0,20000)", 2000)
+</script>
+
+{% ifequal 'common' 'common' %}
+    {% if VideoEnv %}
+        <video controls preload loop autoplay width="" height="" src="/static/grace_voice/{{ VideoEnv }}" type="video/mp4"></video>&nbsp;
+    {% else %}
+        <audio id="myAudio1" autoplay controls src="/static/grace_voice/{{ ext }}" ></audio>&nbsp;
+    {% endif %}
+    <font size="7">
+    <a href=http://47.244.31.34:3927/static/files/pause.html  > 暂停复习  </a>&nbsp;
+    <hr>
+    <pre style="white-space: pre-wrap; word-wrap:break-word;">
+        {{ con }}
+    </pre>
+    </font>
+    <font size="5">
+    {% if env %}
+        {{ env }}
+    {% endif %}
+    <div>
+    <hr>
+    <u>{{ every_info }}</u>
+    </div>
+    <hr>
+    {% if next_con %}
+    <pre style="white-space: pre-wrap; word-wrap:break-word;">
+        {{ next_con }}
+        <hr>
+    </pre>
+    {% endif %}
+    </font>
+
+    <audio id="myAudio2" src="/static/grace_voice/{{ ext }}.mp3" ></audio>
+    <audio id="myAudio3" src="/static/grace_voice/{{ ext }}.mp3" ></audio>
+    <script type="text/javascript">
+        //绑定全局按键
+        /*
+        $(document).keypress(function(e) {
+            var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+            if (eCode == 13){  //13为回车
+                //alert('您按了回车键')
+                document.getElementById("form2").submit();
+            }
+        });
+        */
+
+        //播放次数并自动提交
+        var loop_times = 1
+        var loop_times_all = {{ RepeatTimes }}
+        var aud1 = document.getElementById("myAudio1");
+        
+        //异步方法里的睡眠
+        function sleep(ms){
+            return new Promise(resolve => setTimeout(resolve, ms));
+        } //需要在async function里, 配合 await
+
+        var aud2 = document.getElementById("myAudio2");
+        var aud3 = document.getElementById("myAudio3");
+        //console.log('hi')
+        aud1.onended = async function() {
+            ++loop_times
+            if (loop_times > loop_times_all){
+                document.getElementById("form").submit();
+                //aud3.play()
+            }
+            else {
+                scroll(0,0);
+                //现在改为播放下一次前等我复核
+                //DurationMs = aud1.duration * 1000;
+                DurationMs = aud1.duration * 1000 * 2; //我复述的太慢了,得时间加倍...
+                console.log(DurationMs)
+                //await sleep(DurationMs)
+                scroll(0,0);
+                aud1.play()
+            }
+        }; 
+        aud2.onended = function() {
+            //document.getElementById("form").submit();
+            aud3.play()
+        }; 
+        aud3.onended = function() {
+            document.getElementById("form").submit();
+        }; 
+    </script>
+{% endifequal %}
+
+<form id="form" action="/accept_mother_common" method="get">
+    <input type="hidden" name="every" value={{ every_info }}>
+    {% ifequal every_info 'common' %}
+        {% include "input_cmd_mother.html" %}
+    {% else %}
+        {% include "input_cmd.html" %}
+    {% endifequal %}
+</form>
+
+<p align="right">
+{{ showinfo }} 
+</p>
+
+</body>
+</html>

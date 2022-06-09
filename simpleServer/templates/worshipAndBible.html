@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title> קֹדֶשׁ לַיהוָה </title>
+<!-- <title> אָבִינוּ שֶׁבַּשּׁמַיִם, יִתְקַדֵּשׁ שִׁמְךָ </title> -->
+<script src="/static/jquery.js">
+</script>
+</head>
+<body>
+<font size=6>
+
+<script type="text/javascript">
+    //显示某隐藏标签或隐藏其显示
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      }
+      }
+
+      //获取滚动条位置
+       function get_scroll_position(){
+           return document.documentElement.scrollTop
+       }
+
+       //自动滚动，且对鼠标滚动支持
+       function scroller()  
+       {  
+           if(true)  
+           {   
+               position = get_scroll_position()
+               position += 100;  
+               scroll(0,position);  
+               clearTimeout(timer);  
+               var timer = setTimeout("scroller()",5000);  
+           }
+        }
+        //setTimeout("scroller()", 21000);
+
+        function back2top(event){
+            event = event
+            event.stopPropagation()
+            scroll(0,0);
+        //    setTimeout(function(){ scroll(0, 0);},100)
+        }
+        
+        //function simulator_pagedown(){
+        //document.onclick = function (){
+        function page_down(){
+            return 0;
+            position = get_scroll_position()
+            position += 200;
+            scroll(0, position)
+        }
+        //setTimeout("scroll(0,20000)", 2000)
+</script>
+
+
+<form id="form" action="/acceptCmdWorshipAndBible" method="get">
+    <input type="hidden" name="every" value={{ every_info }}>
+    {% ifequal every_info 'common' %}
+        {% include "input_cmd_one.html" %}
+    {% endifequal %}
+    
+    {% ifequal every_info 'week' %}
+        {% include "input_cmd_default2.html" %}
+    {% endifequal %}
+
+    {% ifequal every_info 'month' %}
+        {% include "input_cmd_default2.html" %}
+    {% endifequal %}
+
+    {% ifequal every_info 'year' %}
+        {% include "input_cmd_default0.html" %}
+    {% endifequal %}
+</form>
+
+<div onclick="page_down()">
+{# {% ifequal every_info 'common' %} #}
+{% ifequal 'common' 'common' %}
+    {% if VideoEnv %}
+        <video controls preload loop autoplay width="" height="" src="/static/grace_voice/{{ VideoEnv }}" type="video/mp4"></video>
+    {% else %}
+        <audio id="myAudio1" autoplay controls src="/static/grace_voice/{{ ext }}.mp3" ></audio>
+    {% endif %}
+    <hr>
+    <font size="7">
+    <pre style="white-space: pre-wrap; word-wrap:break-word;">
+        {{ con }}
+    </pre>
+    {% if env %}
+        {{ env }}
+    {% endif %}
+    </font>
+    <font size="7">
+    <div>
+    <hr>
+    <u>{{ every_info }}</u>
+    </div>
+    <hr>
+    {% if next_con %}
+        {{ next_con }}
+        <hr>
+    {% endif %}
+    <audio id="myAudio2" src="/static/grace_voice/{{ ext }}.mp3" ></audio>
+    <audio id="myAudio3" src="/static/grace_voice/{{ ext }}.mp3" ></audio>
+    <script>
+        var htmlFlag = 0 //用来让base的判断是哪个网页，worship的不用聚焦
+        var loop_times = 1
+        var loop_times_all = 1
+        var aud1 = document.getElementById("myAudio1");
+        var aud2 = document.getElementById("myAudio2");
+        var aud3 = document.getElementById("myAudio3");
+        aud1.onended = function() {
+            ++loop_times
+            if (loop_times > loop_times_all){
+                document.getElementById("form").submit();
+                //aud3.play()
+            }
+            else {
+                aud1.play()
+            }
+        }; 
+        aud2.onended = function() {
+            //document.getElementById("form").submit();
+            aud3.play()
+        }; 
+        aud3.onended = function() {
+            document.getElementById("form").submit();
+        }; 
+    </script>
+{% endifequal %}
+</div>
+<br>
+
+<button onclick='back2top(event)' style="width:680px;height:60px"> back2top </button>
+<p align="right">
+{{ showinfo }} 
+</p>
+
+</font>
+
+</body>
+</html>

@@ -1,0 +1,123 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title> 어버이날 선물</title>
+
+    <style>
+        body {
+          color: #000000;
+          background-color: #ffffff;
+        }
+
+        .page {
+          width: 100%;
+          height: 100%;
+        }
+
+        .time_container,
+        .date_container {
+          width: 100%;
+          margin: auto;
+          text-align: center;
+        }
+
+        .date_container {
+
+        }
+
+        .time {
+          padding-top: 0px;
+          font-size: 10rem;
+        }
+        
+        .name {
+          padding-top: 0px;
+          font-size: 10rem;
+        }
+
+        .info {
+          padding-top: 0px;
+          font-size: 5rem;
+        }
+
+        .info_now {
+          padding-top: 0px;
+          font-size: 5rem;
+        }
+
+        .date {
+          padding-top: 0px;
+          font-size: 6rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+      <div class="time_container">
+          <div class="name" id="">
+            김광량 金光亮
+          </div>
+          <div class="info" id="">
+            1970/03/13(02/16)<br>수요일星期三
+          </div>
+      </div>
+    <hr>
+      <div class="date_container">
+          <div class="info_now" id="info_now">
+            1970/03/13(02/16)수요일星期三
+          </div>
+          <div class="time" id="time">11:27:30</div>
+          <div class="date" id="date">3月13日금(19700216)</div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    作者：儿子江恩典（江飞）,于2021设计作为送给母亲的礼物。<br>
+    저자: 아들 강은혜, 2021년에 만들고 어머니께 선물로 드립니다.<br>
+    Author: Son JiangEndian(JiangFei), wrote in 2021 to present to Mother as a gift. <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+    <script>
+    function formatNumber (n) {
+        n = n.toString()
+        return n[1] ? n : '0' + n;
+    }
+      function update() {
+        var birthday = new Date("1970-03-13")
+        var date = new Date()
+        //计算妈妈共活了多少天，多少年，多少秒
+        var seconds = Math.floor((date.getTime()-birthday.getTime())/1000)
+        var days = Math.floor(seconds/60/60/24)
+        var years = Math.abs((birthday.getFullYear()-date.getFullYear()))
+        var infoString = days + "일日 / " + years + '년年<br>' + seconds + '초秒'
+
+
+        var utc8DiffMinutes = date.getTimezoneOffset() + 540
+        date.setMinutes(date.getMinutes() + utc8DiffMinutes)
+
+        var timeString = date.getHours() + ':' + ('0' + date.getMinutes()).slice(-2) + ':' + formatNumber(date.getSeconds())
+        
+        var weekList = ['日', '一', '二', '三', '四', '五', '六']
+        var dateString = (date.getMonth() + 1) + '月' + date.getDate() + '日' + '星期' + weekList[date.getDay()]
+
+        document.getElementById("time").innerHTML = timeString
+        document.getElementById("date").innerHTML = dateString
+        document.getElementById("info_now").innerHTML = infoString
+      }
+
+      update()
+      setInterval("update()", 1 * 1000)
+    </script>
+</body>
+</html>

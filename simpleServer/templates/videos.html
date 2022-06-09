@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<!-- <title> קֹדֶשׁ לַיהוָה </title> -->
+<title> 反转视频 </title>
+</head>
+<body>
+
+<form id="uploadFiles" enctype="multipart/form-data" action="/upload_video" method="post">
+       <input type="file" name="myfiles" multiple style="width:900px;height:80px;font-size:40px" onkeydown='if(event.keyCode==13) document.getElementById("uploadFiles").submit(); return false;'/>
+       <input type="submit" value="上传" style="width:900px;height:80px;font-size:40px"/>
+</form>
+<script>
+    //绑定全局按键
+    /*
+    $(document).keypress(function(e) {
+        var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+        if (eCode == 13){  //13为回车
+            //alert('您按了回车键')
+            document.getElementById("uploadFiles").submit();
+        }
+    });
+    */
+    //绑定全局不返回还会被别的捕捉，或者先被别的捕捉？直接在回车的按键上绑定提交，然后返回false就可以只提交不再打开文件管理
+</script>
+
+<br>
+
+<font size="6">
+<table border="1">
+{% for file_name in file_list %}
+    <tr>
+        <td nowrap>
+        <a href="/static/forVideos/{{ file_name }}" target="_blank">  {{ file_name }} </a>
+        </td>
+        <td>
+        <a href="/deleteVideo?FileName={{ file_name }}"> {{ Delete }} </a>
+        </td>
+    </tr>
+{% endfor %}
+</table>
+1.上传视频（服务器仅1核，不要搞大视频）
+<br>
+2.反转全部
+<br>
+3.点击reversed_开头的反转完成的视频
+<br>
+注意：点击转换后请等待服务器转换完成，不要重复点击
+
+<br>
+<form id="reverseAll" action="/reverseVideos" method="get">
+       <input type="submit" value='反转全部' style="width:900px;height:80px;font-size:40px"/>
+</form>
+
+<br>
+
+<form id="deleteAll" action="/deleteVideos" method="get">
+       <input type="submit" value='删除全部' style="width:900px;height:80px;font-size:40px"/>
+</form>
+
+<br>
+<br>
+</body>
+</html>

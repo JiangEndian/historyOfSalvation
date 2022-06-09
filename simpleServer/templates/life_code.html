@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script>
+    function selectAll() {
+        var names = document.getElementsByName("checkbox");  
+        var flag = true
+        for(var i=0;i<names.length;i++){
+            if(names[i].checked != true){
+                //life_code.submit()
+                alert("please read all")
+                flag = false
+                return
+            }
+        }
+        if(flag){
+            life_code.submit()
+        }
+    }
+    </script>
+
+    <style type="text/css">
+    input[type="checkbox"]{
+        width:30px;
+        height:30px;
+    }
+    input[type="button"]{
+        width:220px;
+        height:40px;
+        font-size:30px;
+    }
+</style>
+
+
+
+
+<font size=6>
+<pre style="white-space: pre-wrap; word-wrap:break-word;">
+路加福音 17-10 这样，你们作完了一切所吩咐的，只当说：‘我们是无用的仆人，所作的本是我们应分作的。’”
+누가복음서 17-10 이와 같이 너희도 명령 받은 것을 다 행한 후에 이르기를 우리는 무익한 종이라 우리의 하여야 할 일을 한것 뿐이라 할찌니라
+הבשורה על-פי לוקס 17-10 כֵּן גַּם אַתֶּם, לְאַחַר עֲשׂוֹתְכֶם אֶת כָּל שֶׁצֻּוֵּיתֶם, אִמְרוּ: 'עֲבָדִים אֲנַחְנוּ וְתוּ לֹא, עָשִׂינוּ מַה שּׁמֵּחוֹבָתֵנוּ לַעֲשׂוֹת'."
+Luke 17-10 So you also, when you have done everything you were told to do, should say, ‘We are unworthy servants; we have only done our duty.’ ”
+Luke 17-10 Οὕτως καὶ ὑμεῖς, ὅταν ποιήσητε πάντα τὰ διαταχθέντα ὑμῖν, λέγετε ὅτι Δοῦλοι ἀχρεῖοί ἐσμεν· ὅτι ὃ ὀφείλομεν ποιῆσαι πεποιήκαμεν.
+Luke 17-10 Even so you also, when you have done all the things that are commanded you, say, ‘We are unworthy servants. We have done our duty.’” 
+
+以赛亚书 40-8 草必枯干，花必凋残；惟有我们　神的话，必永远立定！”
+이사야서 40-8 풀은 마르고 꽃은 시드나 우리 하나님의 말씀은 영영히 서리라 하라
+Ησαΐας 40-8 Το χορτάρι ξεράθηκε, το άνθος μαράθηκε· ο λόγος, όμως, του Θεού μας μένει στον αιώνα.
+Isaiah 40-8 The grass withers and the flowers fall, but the word of our God endures forever.” 
+Isaiah 40-8 יָבֵ֥שׁ חָצִ֖יר נָ֣בֵֽל צִ֑יץ וּדְבַר־אֱלֹהֵ֖ינוּ יָק֥וּם לְעוֹלָֽם׃  ס
+Isaiah 40-8 The grass withers, the flower fades; but the word of our God stands forever.”  
+
+
+</pre>
+
+<form name="life_code" action=/alt1234rm1602080439868326077 method="get">
+
+<input type="checkbox" name="checkbox" value="true"> LifeOnEarthOfSon.Man <br>
+<br>
+<input type="checkbox" name="checkbox" value="true"> #!/Father/Spirit <br>
+<br>
+<input type="checkbox" name="checkbox" value="true"> from Adam import body_earth <br>
+<input type="checkbox" name="checkbox" value="true"> from Jesus import body_heaven <br>
+<input type="checkbox" name="checkbox" value="true"> from Father import spirit <br>
+<br>
+<input type="checkbox" name="checkbox" value="true"> Jesus, Church = body.create().split('Jesus', 'Church') <br>
+<br>
+<input type="checkbox" name="checkbox" value="true"> #不要想着争取更高更高的地位，天使长的位置也不能满足的 <br>
+<input type="checkbox" name="checkbox" value="true"> #守着神给自己的位置，正正直直，在基督里运行着，侍立着 <br>
+<br>
+<input type="checkbox" name="checkbox" value="true"> def alive_spirit(spirit, God): #all is 9 hours <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;spirit.join(God).eat("WordOfGod") #3 hours，接受话语 <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;spirit.join(God).clear("HolySpirit") #3 hours，服从圣灵 <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;spirit.join(God).rest("JesusChrist") #3 hours，跟随耶稣基督 <br>
+<br>
+<input type="checkbox" name="checkbox" value="true"> def use_body(body, others): #all is 12 hours <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;body.with(others).use("food") #2 hours，肉体饮食 <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;body.clear(self).clear("environment") #1 hour，肉体洁净 <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;body.depart(others).rest("desert") #9 hours，肉体休息 <br>
+<br>
+<input type="checkbox" name="checkbox" value="true"> def server_love(server, others, food): #all is 3 hours <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;server.share(others, food) #1 hour，分享话语食物 <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;server.join(others).communicate(others) #1 hour，彼此交流信息<br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;server.join(others).worship('God') #1 hour，共同敬拜 <br>
+<br>
+<input type="checkbox" name="checkbox" value="true"> for one_day in everyday: <br>
+<input type="checkbox" name="checkbox" value="true"> &nbsp;&nbsp;&nbsp;&nbsp;one_day.run(use_body(body, Church), alive_spirit(Church, JesusChrist), server_love(self, others, λογος)) #执行时表象是food，但本质上是λογος <br> 
+<br>
+<input type="button" name="button" value="rmAndStart" onclick="selectAll()">
+
+
+{% endblock %}

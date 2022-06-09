@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<hr>
+<pre style="white-space: pre-wrap; word-wrap:break-word;">
+<font size="7">
+{{ con }}
+</pre>
+<hr>
+
+{% if env  %}
+{{ env }}
+<hr>
+{% endif %}
+
+{% if ext  %}
+{{ ext }}
+<hr>
+{% endif %}
+</font>
+
+<u><h1>{{ every_info }}</h1></u>
+<br>
+
+<p>{{ every }} {{ cmd }}</p>
+{{ showinfo }} <a href=/alt1234> 回到主页 </a>
+
+{% endblock %}
+
+

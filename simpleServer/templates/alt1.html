@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript">
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      }
+    }
+        //获取滚动条位置
+       function get_scroll_position(){
+           return document.documentElement.scrollTop
+       }
+
+       //自动滚动，且对鼠标滚动支持
+        function scroller()  
+        {  
+           if(true)  
+           {   
+               position = get_scroll_position()
+               position += 1;  
+               scroll(0,position);  
+               clearTimeout(timer);  
+               var timer = setTimeout("scroller()",70);  
+           }
+        }
+        //setTimeout("scroller()", 12000);
+
+        function back2top(event){
+            event = event
+            event.stopPropagation()
+            scroll(0,0);
+            //setTimeout(function(){ scroll(0, 0);},100)
+        }
+
+        //function simulator_pagedown(){
+        //document.onclick = function (){
+        function page_down(){
+            //return;
+            position = get_scroll_position()
+            position += 200;
+            scroll(0, position)
+        }
+
+        //document.addEventListener("click", alert("hi"))
+</script>
+
+
+<div onclick="page_down()">
+<!-- <div onclick="page_down()" style="color:#ffffff;background-color:#00b140;"> -->
+
+<font size="6">
+{{ con }}
+<hr>
+
+{% if env %}
+{{ env }}
+<hr>
+{% endif %}
+
+{% if ext %}
+<pre style="white-space: pre-wrap; word-wrap:break-word;">
+{{ ext }}
+</pre>
+{% endif %}
+
+{% if img %}
+<img src="/static/images/{{ img }}">
+<hr>
+{% endif %}
+
+</font>
+
+<u><h1>{{ every_info }} </h1></u>
+</div>
+<form id="form" action="/accept-cmd-alt1" method="get">
+    <input type="hidden" name="every" value={{ every_info }}>
+    {% ifequal every_info 'year' %}
+        {% include "input_cmd_alt1ForYear.html" %}
+    {% endifequal %}
+    
+    {% ifequal every_info 'month' %}
+        {% include "input_cmd_alt1.html" %}
+    {% endifequal %}
+    
+    {% ifequal every_info 'week' %}
+        {% include "input_cmd_alt1.html" %}
+    {% endifequal %}
+    
+    {% ifequal every_info 'common' %}
+        {% include "input_cmd_one_alt1.html" %}
+    {% endifequal %}
+</form>
+<br>
+
+<p align="right">
+<button onclick='back2top(event)' style="width:180px;height:60px"> back2top </button>
+{{ showinfo }} <a href=/alt1234> 回到主页 </a>
+</p>
+<p>{{ every }} {{ cmd }}</p>
+
+{% endblock %}

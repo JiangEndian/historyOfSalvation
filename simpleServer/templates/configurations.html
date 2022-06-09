@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<pre style="white-space: pre-wrap; word-wrap:break-word;">
+{{ AllConfigurations }}
+</pre>
+
+<font size=5>
+<form id="form" action="/updateConfigurationsWeb" method="get">
+    RepeatTimes: 
+    <input name="RepeatTimes" value="1" type="submit" style="width:120px;height:60px;font-size:40px" >
+    <input name="RepeatTimes" value="2" type="submit" style="width:120px;height:60px;font-size:40px" >
+    <input name="RepeatTimes" value="3" type="submit" style="width:120px;height:60px;font-size:40px" >
+    <input name="RepeatTimes" value="4" type="submit" style="width:120px;height:60px;font-size:40px" >
+    <input name="RepeatTimes" value="7" type="submit" style="width:120px;height:60px;font-size:40px" >
+</form>
+<hr>
+
+<!--
+<form id="form" action="/updateConfigurationsWeb" method="get">
+    Delete or not: 
+    <input name="Delete" value="Delete" type="submit" style="width:2120px;height:60px;font-size:40px" >
+    <input name="Delete" value="" type="submit" style="width:1120px;height:40px;font-size:40px" >
+</form>
+<hr>
+<a href=/alt3-common  > alt3_common  </a> 
+-->
+
+
+<a href=/alt3  ><button style="width:120px;height:120px;font-size:40px"> alt3  </button></a> &nbsp;
+<a href=/alt  ><button style="width:320px;height:120px;font-size:40px"> download  </button></a> 
+<a href=/videos target="_blank" ><button style="width:140px;height:120px;font-size:40px"> videos  </button></a> 
+<a href=/video_view > video_view </a> <br/>
+<hr>
+
+<a href=/ftpGetFrom  ><button style="width:400px;height:120px;font-size:40px"> back_lgx4edited  </button></a> &nbsp;
+<a href=/backBT_ALL  ><button style="width:400px;height:120px;font-size:40px"> back_BT_ALL  </button></a> &nbsp;
+<hr>
+
+<!--("#", "%23")("%", "%25")("&", "%26")("+", "%2B")("/", "%2F")("=", "%3D")("?", "%3F")(< %3C)(> %3E)-->
+<form action="/runThoseCmds" method="post" id="usrform">
+    <input name="cmd" value="runThoseCmds" type="submit" style="width:900px;height:80px;font-size:40px" >
+    <!-- <input name="text" placeholder="text" value="" style="width:900px;height:100px;font-size:40px" > -->
+</form>
+<textarea name="cmdList" form="usrform" style="width:900px;height:160px;font-size:35px">notify-send hi, </textarea><br>
+
+
+</font>
+
+{% endblock %}
+

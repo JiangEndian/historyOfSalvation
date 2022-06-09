@@ -1,0 +1,41 @@
+
+
+<div class="time" id="time" style="width:100%;margin:auto;text-align:left;font-size:7rem;"> 00 </div>
+<audio id="bibi" controls src="/static/bibi.mp3" ></audio>
+<script>
+    var timeString = 0
+    var AllTime = 30
+    var BibiTime = 15
+    function update(){
+        ++timeString
+        document.getElementById("time").innerHTML = timeString
+        if (timeString >= AllTime){
+            timeString = 0
+        }
+    }
+    update()
+    setInterval(update, 1000)
+</script>
+
+<div style="position:fixed;top:0;right:0;">
+<img src="exercise.jpg"/>
+</div>
+
+<font size=7>
+<p align="left">
+<a href=/alt1234> backToHome </a>
+</p>
+</font>
+
+
+
+<script>
+    var bibi = document.getElementById("bibi");
+    i=0
+    setInterval( function (){
+    if (timeString <= BibiTime){
+    bibi.play()
+    ++i
+    }
+    }, 1000)
+</script>

@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript">
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      }
+   }
+</script>
+
+<p>
+</p>
+
+<font size="7">
+{% ifequal every_info 'common' %}
+    {{ con }}
+    <hr>
+    <div id="lb"" >
+    {{ env }}
+    </div>
+    <audio id="myAudio1" autoplay src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio2" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio3" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio4" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio5" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio6" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio7" src="/static/grace_voice/{{ ext }}.mp3" />
+    <script>
+        var aud1 = document.getElementById("myAudio1");
+        var aud2 = document.getElementById("myAudio2");
+        var aud3 = document.getElementById("myAudio3");
+        var aud4 = document.getElementById("myAudio4");
+        var aud5 = document.getElementById("myAudio5");
+        var aud6 = document.getElementById("myAudio6");
+        var aud7 = document.getElementById("myAudio7");
+        aud1.onended = function() {
+            document.getElementById("form").submit();
+            //aud2.play()
+        }; 
+        aud2.onended = function() {
+            aud7.play()
+        }; 
+        aud3.onended = function() {
+            aud4.play()
+        }; 
+        aud4.onended = function() {
+            aud5.play()
+        }; 
+        aud5.onended = function() {
+            aud6.play()
+        }; 
+        aud6.onended = function() {
+            aud7.play()
+        }; 
+        aud7.onended = function() {
+            document.getElementById("form").submit();
+        }; 
+    </script>
+{% else %}
+    <input type="button" style="width:960px;height:100px;" value="" onclick="display('lb')">
+    <br>
+    {{ con }}
+    <hr>
+    <div id="lb" style="visibility:hidden">
+    {{ env }}
+    </div>
+    <hr>
+    <br>
+    <u>{{ every_info }}</u>
+    <br>
+    <audio id="myAudio1" autoplay src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio2" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio3" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio4" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio5" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio6" src="/static/grace_voice/{{ ext }}.mp3" />
+    <audio id="myAudio7" src="/static/grace_voice/{{ ext }}.mp3" />
+    <script>
+        var aud1 = document.getElementById("myAudio1");
+        var aud2 = document.getElementById("myAudio2");
+        var aud3 = document.getElementById("myAudio3");
+        var aud4 = document.getElementById("myAudio4");
+        var aud5 = document.getElementById("myAudio5");
+        var aud6 = document.getElementById("myAudio6");
+        var aud7 = document.getElementById("myAudio7");
+        aud1.onended = function() {
+            aud2.play()
+        }; 
+        aud2.onended = function() {
+            aud3.play()
+        }; 
+        aud3.onended = function() {
+            aud4.play()
+        }; 
+        aud4.onended = function() {
+            aud5.play()
+        }; 
+        aud5.onended = function() {
+            aud6.play()
+        }; 
+        aud6.onended = function() {
+            aud7.play()
+        }; 
+        aud7.onended = function() {
+            document.getElementById("form").submit();
+        }; 
+    </script>
+{% endifequal %}
+</font>
+<form id="form" action="/accept-cmd-alt3-common" method="get">
+    <input type="hidden" name="every" value={{ every_info }}>
+    {% ifequal every_info 'common' %}
+        {% include "input_cmd_one.html" %}
+    {% else %}
+        {% include "input_cmd.html" %}
+    {% endifequal %}
+</form>
+
+<p align="right">
+{{ showinfo }} <a href=/alt1234> 回到主页 </a>
+</p>
+
+<p>{{ every }} {{ cmd }}</p>
+
+
+{% endblock %}

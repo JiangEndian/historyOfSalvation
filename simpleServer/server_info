@@ -1,0 +1,4 @@
+nohup ./manage.py runserver 0.0.0.0:3928 >/dev/null 2>&1 &
+
+如果py版本和django版本不对应，会出现语法错误。尴尬。。。
+

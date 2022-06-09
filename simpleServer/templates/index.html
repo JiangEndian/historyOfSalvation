@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+body {
+    background-image: url("/static/probabilityOfComing.png");
+}
+</style>
+
+<font size="6">
+
+<form id="uploadFiles" enctype="multipart/form-data" action="/upload_file" method="post">
+       <input type="file" name="myfiles" multiple style="width:400px;height:60px;font-size:40px" onkeydown='if(event.keyCode==13) document.getElementById("uploadFiles").submit(); return false;'/>
+       <input type="submit" value="upload"style="width:200px;height:50px;font-size:40px"/>
+        <a href=/alt  >download_upload</a>
+</form>
+<hr>
+
+<script>
+    //绑定全局按键
+    /*
+    $(document).keypress(function(e) {
+        var eCode = e.keyCode ? e.keyCode : e.which ? e.which : e.charCode;
+        if (eCode == 13){  //13为回车
+            //alert('您按了回车键')
+            document.getElementById("uploadFiles").submit();
+        }
+    });
+    */
+</script>
+
+<form id="delTask" action="/delTask" method="post">
+    {% for Task in Tasks %}
+        <input type="checkbox" name="TaskName" value="{{ Task }}" style="width:30px;height:30px;">{{ Task }}<br>
+    {% endfor %}
+    <br>
+    <input type="submit" value='del' style="width:900px;height:60px;font-size:30px" >
+</form>
+<hr>
+
+<form id="addTask" action="/addTask" method="get">
+    <input name="TaskName" placeholder="TaskName" value="" style="width:600px;height:45px;font-size:40px" >
+    <input type="submit" value='add' style="width:200px;height:60px;font-size:30px" >
+</form>
+<hr>
+
+<a href=/bibletimeDownload  > BTDownload </a>&nbsp;
+<a href=/configurationsWeb  > cfg </a>&nbsp;
+<a href=/life_code > life_code </a> &nbsp;
+<hr>
+<a href=/world_emulator  > world_emulator </a>&nbsp;
+<a href='http://8.142.71.24' target="_blank" > 吗哪 </a>&nbsp;
+<a href='http://10.42.0.1:1234' target="_blank" > localhost1234 </a>&nbsp;
+<hr>
+<a href='/static/exercise.html' target="_blank" > 休息大脑 </a>&nbsp;
+<a href='/static/verses/biblehubVerses.html' target="_blank" > biblehubVerses </a>&nbsp;
+<a href='/static/verses/genesis/1-1.htm' target="_blank" > genesis1-1 </a>&nbsp;
+<hr>
+<a href='/static/www.hebrew4christians.com/index.html' target="_blank" > hebrew4christians </a>&nbsp;
+<a href='/hebrewCalendar' target="_blank" > hebrewCalendar </a>&nbsp;
+<hr>
+<!--
+<a href=/churchSystem >ChurchSystem</a> &nbsp;
+<a href=/grace_calculator >grace_calculator</a> &nbsp;
+<a href=/mother_common target="_blank" > mother_common </a>&nbsp; 
+-->
+
+<hr>
+<a href=/alt1  ><button style="width:220px;height:100px;font-size:40px"> alt1  </button></a> &nbsp;
+<a href=/alt1  >{{ alt1 }} </a> &nbsp;
+<a href=/alt1-common  >{{ alt1_common }} </a> 
+<hr>
+
+<a href=/alt2  ><button style="width:220px;height:100px;font-size:40px"> alt2  </button></a> &nbsp;
+<a href=/alt2  > {{ alt2 }} </a> &nbsp;
+<a href=/alt2-common  >{{ alt2_common }} </a> 
+<hr>
+
+<a href=/alt3  ><button style="width:220px;height:100px;font-size:40px"> alt3  </button></a> &nbsp;
+<a href=/alt3  > {{ alt3 }} </a> &nbsp;
+<a href=/alt3-common  >{{ alt3_common }} </a> 
+<!-- <a href=/alt3_all_mp3  > {{ alt3_all }} </a> -->
+<hr>
+
+<a href=/alt4  ><button style="width:220px;height:100px;font-size:40px"> alt4  </button></a> &nbsp;
+<a href=/alt4  > {{ alt4 }} </a> &nbsp;
+<a href=/alt4-common  >{{ alt4_common }} </a> 
+<hr>
+
+<pre style="white-space: pre-wrap; word-wrap:break-word;">
+{{ plan_endian }}
+</pre>
+<hr>
+
+<a href="/submitToGithub" > 提交服务器变动至github </a>
+<a href="https://github.com/JiangEndian/grace_20190205/archive/master.zip" > 全站在github的master.zip </a>
+
+{% endblock %}
+

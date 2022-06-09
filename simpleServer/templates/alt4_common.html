@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<script type="text/javascript">
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      }
+   }
+</script>
+
+
+<p>
+<form action="/accept-cmd-alt4-common" method="get">
+    <input type="hidden" name="every" value={{ every_info }}>
+    {% ifequal every_info 'common' %}
+        {% include "input_cmd_one_alt4.html" %}
+    {% else %}
+        {% include "input_cmd.html" %}
+    {% endifequal %}
+</form>
+
+<font size="7">
+{% ifequal every_info 'common' %}
+    {{ con }}
+    <hr>
+    <div id="lb" style="color:gray">
+    {{ env }}
+    </div>
+{% else %}
+    <input type="button" style="width:960px;height:100px;" value="" onclick="display('lb')">
+    <br>
+    {{ con }}
+    <hr>
+    <div id="lb" style="visibility:hidden">
+    {{ env }}
+    </div>
+{% endifequal %}
+<hr>
+</font>
+
+<u><h1>{{ every_info }}</h1></u>
+<p>
+<p>
+<audio controls="controls" autoplay="autoplay" src="/static/grace_voice/{{ ext }}.mp3" loop="loop"/>
+Your browser does not support the audio element.
+</audio>
+<p>
+
+<p>{{ every }} {{ cmd }}</p>
+{{ showinfo }} <a href=/alt1234> 回到主页 </a>
+
+{% endblock %}

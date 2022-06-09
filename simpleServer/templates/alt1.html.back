@@ -1,0 +1,54 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript">
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      }
+   }
+</script>
+
+
+{{ showinfo }} <a href=/alt1234> 回到主页 </a>
+<p>
+
+<hr>
+<font size="6">
+{{ con }}
+<hr>
+
+{% if env  %}
+{{ env }}
+<hr>
+{% endif %}
+
+{% if ext  %}
+{{ ext }}
+<hr>
+{% endif %}
+</font>
+
+<u><h1>{{ every_info }}</h1></u>
+<form action="/accept-cmd-alt1" method="get">
+    {% if every_info != "common" %}
+    <label><input style="width:50px;height:50px" name="cmd" type="radio" value="2" checked="checked"/>2</label> 
+    <label><input style="width:50px;height:50px" name="cmd" type="radio" value="8" />8</label> 
+    <label><input style="width:50px;height:50px" name="cmd" type="radio" value="0" />0</label> 
+    {% else %}
+    <input type="hidden" name="cmd" value="0"/>
+    {% endif %}
+    <input type="hidden" name="every" value={{ every_info }}>
+    <br>
+    <input type="submit" style="width:200px;height:60px;" value="确定">
+    <input name="cmd" value="2" type="submit" style="width:200px;height:60px;" >
+</form>
+<br>
+
+<p>{{ every }} {{ cmd }}</p>
+
+{% endblock %}

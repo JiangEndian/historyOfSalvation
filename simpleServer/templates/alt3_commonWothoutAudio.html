@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<script type="text/javascript">
+    function display(id){
+        var traget=document.getElementById(id);
+        if(traget.style.visibility=="hidden"){
+            traget.style.visibility="";
+        }else{
+            traget.style.visibility="hidden";
+      }
+   }
+</script>
+
+<p>
+</p>
+
+{% ifequal every_info 'common' %}
+    <font size="7">
+    <pre style="white-space: pre-wrap; word-wrap:break-word;">
+        {{ con }}
+    </pre>
+    <br>
+    <font size="6">
+    <div id="lb" >
+    {{ env }}
+    </div>
+    <hr>
+    {{ next_con }}
+{% else %}
+    <input type="button" style="width:960px;height:100px;" value="" onclick="display('lb')">
+    <br>
+    {{ con }}
+    <hr>
+    <div id="lb" style="visibility:hidden">
+    {{ env }}
+    </div>
+    <hr>
+    <br>
+    <u>{{ every_info }}</u>
+    <br>
+{% endifequal %}
+</font>
+<p align="right">
+{{ showinfo }} <a href=/alt1234> 回到主页 </a>
+</p>
+
+<p>{{ every }} {{ cmd }}</p>
+
+{% endblock %}
+

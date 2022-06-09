@@ -1,0 +1,26 @@
+暂定计划：<input style="width:900" />
+
+<div id="week">周日</div> 
+<div id="time">00:00</div>
+<div id="date">1月1日</div>
+
+<script>
+      function update() {
+        var date = new Date()
+        var utc8DiffMinutes = date.getTimezoneOffset() + 540
+        date.setMinutes(date.getMinutes() + utc8DiffMinutes)
+
+        var timeString = '' + date.getHours() + ':' + ('0' + date.getMinutes()).slice(-2)
+        var dateString = (date.getMonth() + 1) + '月' + date.getDate() + '日'
+        var weekList = ['日', '一', '二', '三', '四', '五', '六']
+        var weekString = '周' + weekList[date.getDay()]
+
+        document.getElementById("time").innerHTML = timeString
+        document.getElementById("date").innerHTML = dateString
+        document.getElementById("week").innerHTML = weekString
+      }
+
+      update()
+      setInterval("update()", 60 * 1000)
+    </script>
+</p>

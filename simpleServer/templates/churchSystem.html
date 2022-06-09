@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block content %}
+
+<font size="6">
+
+<div name="ChurchWeek">
+<table border="1">
+    <tr>
+        <td>礼拜天</td>
+        <td> 上午聚会 </td>
+        <td> 下午聚会 </td>
+        <td> 晚上聚会 </td>
+    </tr>
+    <tr>
+        <td>礼拜一</td>
+        <td>思考研究写神的话语</td>
+        <td>宣读编辑分享神话语</td>
+        <td> alt </td>
+    </tr>
+    <tr>
+        <td>礼拜二</td>
+        <td> 清理待清理 </td>
+        <td> 传耶稣的名 </td>
+        <td> alt </td>
+    </tr>
+    <tr>
+        <td>礼拜三</td>
+        <td> 思考研究写神的话语 </td>
+        <td> 宣读编辑分享神话语 </td>
+        <td> alt </td>
+    </tr>
+    <tr>
+        <td>礼拜四</td>
+        <td> 思考研究写神的话语 </td>
+        <td> 宣读编辑分享神话语 </td>
+        <td> alt </td>
+    </tr>
+    <tr>
+        <td>礼拜五</td>
+        <td> 思考研究写神的话语 </td>
+        <td> 宣读编辑分享神话语 </td>
+        <td> alt </td>
+    </tr>
+    <tr>
+        <td>礼拜六</td>
+        <td> 休息 </td>
+        <td> 休息 </td>
+        <td> 休息 </td>
+    </tr>
+</table>
+</div>
+
+<hr>
+<div name="CalculatorSystem">
+<form name="submit" action="/churchSystemAccept_grace" method="get">
+<select name="Chinese_name" style="width:600px;height:60px;font-size:40px">
+    <option value="神就是爱"> 神就是爱 </option>
+
+</select><br>
+amount(RMB)：<input type="number" name="money" value=0 style="width:400px;height:40px;font-size:40px"><br>
+用途：<input type="text" name="money_usage" style="width:400px;height:40px;font-size:40px"><br>
+amount(Min)：<input type="number" name="time" value=0 style="width:400px;height:40px;font-size:40px"><br>
+用途：<input type="text" name="time_usage" style="width:400px;height:40px;font-size:40px"><br>
+备用1：<input type="text" name="other1" style="width:400px;height:40px;font-size:40px"><br>
+备用2：<input type="text" name="other2" style="width:400px;height:40px;font-size:40px"><br>
+备用3：<input type="text" name="other3" style="width:400px;height:40px;font-size:40px" value={{ other3 }} ><br>
+<input type="submit" value="Submit" style="width:400px;height:70px;font-size:40px"><br>
+</form>
+</div>
+<a href=/churchSystem_viewer> 详细视图 </a>
+</p>
+
+<font size="6">
+allMoney:{{ allMoney }}
+allTime:{{ allTime }}
+<pre style="white-space: pre-wrap; word-wrap:break-word;">
+<table border=1>
+    <tr><td>
+        {{ name_time }}
+        </td>
+        <td>
+        {{ name_money }}
+        </td>
+    </tr>
+</table>
+</pre>
+</font>
+
+
+{% endblock %}

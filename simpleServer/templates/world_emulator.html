@@ -1,0 +1,33 @@
+{% extends "base.html" %} 
+{% block content %}
+
+
+<hr>
+
+year:{{ year }}, big_pool:{{ big_pool }}, all_man_number:{{ all_man_number }}, inflation_rate:{{ inflation_rate }}
+
+<hr>
+
+劳动者数:{{ laborer_number }}，精英数:{{ elite_number }}，耶稣者数:{{ christian_number }}，死者数:{{ dead_number }}，glory:{{ glory }}
+
+<br>
+<hr>
+<br>
+
+name, eat, work_time, deposit, age, alive
+<hr>
+
+{% for one_man_info in all_man_info %}
+	{{ one_man_info }}<br>
+{% endfor %}
+
+<hr>
+食利者，耶稣者展示。劳动者太多了。。。再看看吧，先都展示
+<hr>
+
+<a href=/reset_world_emulator> reset </a>
+<br>
+<a href=/reset_family_calculator> reset_family_calculator </a>
+
+{% endblock %}
+

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>希伯来语发音练习</title>
+
+    <script src="/static/jquery.js"></script>
+
+    <style>
+        button {
+            text-align: center;
+            font-size: 7rem;
+        }
+        label {
+            font-size: 5rem;
+        }
+    </style>
+</head>
+
+<body>
+<label> 辅音 </label>
+<audio id="consonants" controls src="/static/hebrewPronunciation_consonants6s.mp3" ></audio>
+<table border='1'>
+    <tr>
+        <td> <button name='cons' second='0' onclick="playAtSecond(this)"> א </button> </td>
+        <td> <button name='cons' second='6' onclick="playAtSecond(this)"> ב </button> </td>
+        <td> <button name='cons' second='12' onclick="playAtSecond(this)"> בּ </button> </td>
+        <td> <button name='cons' second='18' onclick="playAtSecond(this)"> ג </button> </td>
+        <td> <button name='cons' second='24' onclick="playAtSecond(this)"> ד </button> </td>
+        <td> <button name='cons' second='30' onclick="playAtSecond(this)"> ה </button> </td>
+        <td> <button name='cons' second='36' onclick="playAtSecond(this)"> ו </button> </td>
+    </tr>
+</table>
+
+<table border='1'>
+    <tr>
+        <td> <button name='cons' second='42' onclick="playAtSecond(this)"> ז </button> </td>
+        <td> <button name='cons' second='48' onclick="playAtSecond(this)"> ח </button> </td>
+        <td> <button name='cons' second='54' onclick="playAtSecond(this)"> ט </button> </td>
+        <td> <button name='cons' second='60' onclick="playAtSecond(this)"> י </button> </td>
+        <td> <button name='cons' second='66' onclick="playAtSecond(this)"> כך </button> </td>
+        <td> <button name='cons' second='72' onclick="playAtSecond(this)"> כּ </button> </td>
+        <td> <button name='cons' second='78' onclick="playAtSecond(this)"> ל </button> </td>
+    </tr>
+</table>
+
+<table border='1'>
+    <tr>
+        <td> <button name='cons' second='84' onclick="playAtSecond(this)"> מם </button> </td>
+        <td> <button name='cons' second='90' onclick="playAtSecond(this)"> נן </button> </td>
+        <td> <button name='cons' second='96' onclick="playAtSecond(this)"> ס </button> </td>
+        <td> <button name='cons' second='102' onclick="playAtSecond(this)"> ע </button> </td>
+        <td> <button name='cons' second='108' onclick="playAtSecond(this)"> פף </button> </td>
+        <td> <button name='cons' second='114' onclick="playAtSecond(this)"> פּ </button> </td>
+        <td> <button name='cons' second='120' onclick="playAtSecond(this)"> צץ </button> </td>
+    </tr>
+</table>
+
+<table border='1'>
+    <tr>
+        <td> <button name='cons' second='126' onclick="playAtSecond(this)"> ק </button> </td>
+        <td> <button name='cons' second='132' onclick="playAtSecond(this)"> ר </button> </td>
+        <td> <button name='cons' second='138' onclick="playAtSecond(this)"> שֹ </button> </td>
+        <td> <button name='cons' second='144' onclick="playAtSecond(this)"> שׁ </button> </td>
+        <td> <button name='cons' second='150' onclick="playAtSecond(this)"> ת </button> </td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<br>
+
+<label> 元音 </label>
+<audio id="vowels" controls src="/static/hebrewPronunciation_vowels6s.mp3" ></audio>
+<table border='1'>
+    <tr>
+        <td> <button name='vowels' second='0' onclick="playAtSecond(this)"> אָאַאֲ אָה </button> </td>
+        <td> <button name='vowels' second='6' onclick="playAtSecond(this)"> אֵאֶאֱ אֶה אֵה אֶי אֵי </button> </td>
+        <td> <button name='vowels' second='12' onclick="playAtSecond(this)"> אִ אִי </button> </td>
+        <td> <button name='vowels' second='18' onclick="playAtSecond(this)"> אֹאָאֳ אֹה אוֹ </button> </td>
+        <td> <button name='vowels' second='24' onclick="playAtSecond(this)"> אֻ אוּ </button> </td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<br>
+
+<label> 单词 </label>
+<audio id="words" controls src="/static/hebrewPronunciation_Shalom_Amen_Elohim_Adonai_HaShem_12s.mp3" ></audio>
+<table border='1'>
+    <tr>
+        <td> <button name='words' second='0' onclick="playAtSecond(this)"> שָׁלוׂם </button> </td>
+        <td> <button name='words' second='12' onclick="playAtSecond(this)"> אָמֵן </button> </td>
+    </tr>
+</table>
+
+<table border='1'>
+    <tr>
+        <td> <button name='words' second='24' onclick="playAtSecond(this)"> אֱלֹהִים </button> </td>
+        <td> <button name='words' second='36' onclick="playAtSecond(this)"> אֲדֹנָי </button> </td>
+        <td> <button name='words' second='48' onclick="playAtSecond(this)"> הָשֵׁם </button> </td>
+    </tr>
+</table>
+
+<br>
+<hr>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</body>
+
+<script>
+    var cons = document.getElementById("consonants");
+    var vowels = document.getElementById("vowels");
+    var words = document.getElementById("words");
+
+    function playAtSecond(e){
+        var second = e.getAttribute("second");
+        var name = e.getAttribute("name");
+
+        if (name == 'cons'){
+            cons.currentTime = second
+            cons.play()
+        }
+        if (name == 'vowels'){
+            vowels.currentTime = second
+            vowels.play()
+        }
+        if (name == 'words'){
+            words.currentTime = second
+            words.play()
+        }
+    }
+</script>
+
+</html>
