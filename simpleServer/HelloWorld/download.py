@@ -24,6 +24,9 @@ def download(request):
     file_dict['halfItems'] = halfItems
 
     file_dict['TextArea'] = readffile('from_net')
+    if len(file_dict['TextArea']) < 5:
+        runsyscmd('df -h > dfResult')
+        file_dict['TextArea'] = readffile('dfResult')
     return render(request, 'download.html', file_dict)
 
 def deleteFile(request):
