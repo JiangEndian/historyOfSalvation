@@ -1,7 +1,7 @@
 Filesystem      Size  Used Avail Use% Mounted on
 udev            966M     0  966M   0% /dev
 tmpfs           199M  716K  199M   1% /run
-/dev/vda1        40G   18G   20G  47% /
+/dev/vda1        40G   18G   20G  48% /
 tmpfs           994M     0  994M   0% /dev/shm
 tmpfs           5.0M     0  5.0M   0% /run/lock
 tmpfs           994M     0  994M   0% /sys/fs/cgroup
